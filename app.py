@@ -14,7 +14,7 @@ with open('lgbm_total_random.p', 'rb') as f2:
 
 df = pd.read_csv('df_total_sample.csv', index_col=0)
 df.drop(columns='TARGET', inplace=True)
-num_client = df.SK_ID_CURR.unique().astype(str)
+num_client = df.SK_ID_CURR.unique()
 
 
 @app.route('/')
@@ -30,7 +30,7 @@ def predict():
     liste des clients dans le fichier
 
     """
-    return jsonify({"list_client_id" : list(num_client)})
+    return jsonify({"list_client_id" : list(num_client.astype(str))})
 
 
 @app.route('/predict/<int:sk_id>')
