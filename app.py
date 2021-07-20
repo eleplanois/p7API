@@ -50,9 +50,13 @@ def predict_get(sk_id):
 #http://127.0.0.1:5000/predict/415560
     if sk_id in num_client:
         predict = grid_lgbm.predict(df[df['SK_ID_CURR']==sk_id])[0]
+        predict_proba = grid_lgbm.predict_proba(df[df['SK_ID_CURR']==sk_id])[0]
+        predict_proba_0 = str(predict_proba[0])
+        predict_proba_1 = str(predict_proba[1])
     else:
-        predict = "client inconnu"
-    return jsonify({ 'retour_prediction' : str(predict) })
+        predict = predict_proba_0 = predict_proba_1 = "client inconnu"
+    return jsonify({ 'retour_prediction' : str(predict), 'predict_proba_0': predict_proba_0,
+                     'predict_proba_1': predict_proba_1 })
 
 
 app.run(port=5000)
