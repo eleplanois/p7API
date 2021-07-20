@@ -59,5 +59,6 @@ def predict_get(sk_id):
                      'predict_proba_1': predict_proba_1 })
 
 
-app.run()
+if __name__ == '__main__':
+	app.run()
 					 
