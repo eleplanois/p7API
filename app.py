@@ -9,10 +9,10 @@ warnings.filterwarnings('ignore')
 
 app = Flask(__name__)
 
-with open('lgbmc10_total_custom.p', 'rb') as f2:
+with open('lgbmc10_feats_custom.p', 'rb') as f2:
     grid_lgbm = pickle.load(f2)
 
-df = pd.read_csv('df_total_sample.csv', index_col=0)
+df = pd.read_csv('df_feats_sample.csv', index_col=0)
 df.drop(columns='TARGET', inplace=True)
 num_client = df.SK_ID_CURR.unique()
 
