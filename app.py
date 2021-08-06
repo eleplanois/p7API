@@ -9,7 +9,9 @@ warnings.filterwarnings('ignore')
 
 app = Flask(__name__)
 
-with open('lgbmc10_feats_custom.p', 'rb') as f2:
+#with open('lgbmc10_feats_custom.p', 'rb') as f2:
+with open('lgbmc10_GridCV.p', 'rb') as f2:
+    print("utilisation modele lgbmc10_GridCV")
     grid_lgbm = pickle.load(f2)
 
 df = pd.read_csv('df_feats_sample.csv', index_col=0)
@@ -30,7 +32,8 @@ def predict():
     liste des clients dans le fichier
 
     """
-    return jsonify({"list_client_id" : list(num_client.astype(str))})
+    return jsonify({"model": "'lgbmc10_GridCV",
+                    "list_client_id" : list(num_client.astype(str))})
 
 
 @app.route('/predict/<int:sk_id>')
